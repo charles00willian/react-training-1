@@ -3,16 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    textLength : 0
+  }
+
+  showLengthHandler = event => this.setState({textLength: event.target.value.length});
+  
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <input type="text" 
+        onChange={(event)=>this.showLengthHandler(event)}/>
+        <p>{this.state.textLength}</p>
       </div>
     );
   }
