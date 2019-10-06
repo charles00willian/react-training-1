@@ -14,20 +14,30 @@ class App extends Component {
   
   textHandler = event => this.setState({text: event.target.value.split('')});
 
+  deleteCharHandler = charIndex =>{
+    let textArr = [...this.state.text];
+
+    textArr.splice(charIndex,1);
+    this.setState({text: textArr});
+  }
+
   render() {
     
     let chars = (
       <div>
-        {this.state.text.map(char => {
+        {this.state.text.map((char, index) => {
           return(
-            <CharComponent char={char}/>
+            <CharComponent 
+              key = {index}
+              char={char}
+              delete={() => this.deleteCharHandler(index)}
+            />
           )
          })
         }
       </div>
     )
     
-    console.log(chars)
     return (
       <div className="App">
         <input type="text" 
